@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeSet;
 
 import processing.core.PApplet;
@@ -15,9 +16,11 @@ public class Logica {
 
 	public Logica() {
 
-		informaciones = new LinkedList<>();
+		informaciones = new LinkedList<Informacion>();
+		peso= new TreeSet<Informacion>();
 		cargarDatos();
-		peso= new TreeSet<>();
+		
+		
 	}
 
 	public void cargarDatos() {
@@ -47,6 +50,9 @@ public class Logica {
 
 			informaciones.add(new Informacion(app, Usuarios[0], Usuarios[1], InfoFloat[0], InfoFloat[1], InfoFloat[2],
 					TonoFloat[0], TonoFloat[1], TonoFloat[2]));
+			
+			peso.add(new Informacion(app, Usuarios[0], Usuarios[1], InfoFloat[0], InfoFloat[1], InfoFloat[2],
+					TonoFloat[0], TonoFloat[1], TonoFloat[2]));
 		}
 
 	}
@@ -61,13 +67,13 @@ public class Logica {
 			i++;
 		}
 		
-		Iterator<Informacion> pe = peso.iterator();
-		int p = 0;
-		while (pe.hasNext()) {
-			Informacion In =pe.next();
-			In.pintar(40 + 40* p);
-			p++;
-		}
+//		Iterator<Informacion> pe = peso.iterator();
+//		int p = 0;
+//		while (pe.hasNext()) {
+//			Informacion In =pe.next();
+//			In.pintar(40 + 40* p);
+//			p++;
+//		}
 
 	}
 	
@@ -83,9 +89,15 @@ public class Logica {
 		}
 		
 		if(app.key == '3'){
-			//Collections.shuffle(informaciones);
-			peso.addAll(informaciones);
+//			Collections.sort(peso);
 			informaciones.clear();
+			informaciones.addAll(peso);
+			Collections.sort(informaciones, new compPeso());
+			Collections.reverse(informaciones);
+		}
+		if(app.key == '4'){
+			
+			
 		}
 	}
 
