@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,16 +12,19 @@ public class Logica {
 
 	private PApplet app = MainApp_RepasoParcial.app;
 	private LinkedList<Informacion> informaciones;
-	
+	private LinkedList<Informacion> backup;
+
 	private TreeSet<Informacion> peso;
+	private HashSet<Informacion> color;
 
 	public Logica() {
 
 		informaciones = new LinkedList<Informacion>();
-		peso= new TreeSet<Informacion>();
+		backup = new LinkedList<Informacion>();
+		peso = new TreeSet<Informacion>();
+		color = new HashSet<Informacion>();
 		cargarDatos();
-		
-		
+
 	}
 
 	public void cargarDatos() {
@@ -33,7 +37,7 @@ public class Logica {
 			String[] Usuarios = Usuario[i].split(":");
 			String[] Infos = Info[i].split("/");
 			String[] Tonos = Tono[i].split("/");
-			
+
 			app.println(Tonos);
 			app.println(Infos);
 			app.println(Usuarios);
@@ -50,9 +54,10 @@ public class Logica {
 
 			informaciones.add(new Informacion(app, Usuarios[0], Usuarios[1], InfoFloat[0], InfoFloat[1], InfoFloat[2],
 					TonoFloat[0], TonoFloat[1], TonoFloat[2]));
-			
-			peso.add(new Informacion(app, Usuarios[0], Usuarios[1], InfoFloat[0], InfoFloat[1], InfoFloat[2],
-					TonoFloat[0], TonoFloat[1], TonoFloat[2]));
+
+			backup.addAll(informaciones);
+			peso.addAll(informaciones);
+			color.addAll(informaciones);
 		}
 
 	}
@@ -63,41 +68,38 @@ public class Logica {
 		int i = 0;
 		while (It.hasNext()) {
 			Informacion In = It.next();
-			In.pintar(40 +40* i);
+			In.pintar(40 + 40 * i);
 			i++;
 		}
-		
-//		Iterator<Informacion> pe = peso.iterator();
-//		int p = 0;
-//		while (pe.hasNext()) {
-//			Informacion In =pe.next();
-//			In.pintar(40 + 40* p);
-//			p++;
-//		}
 
 	}
-	
-	public void Ordenamientos(){
-		
-		if(app.key == '1'){		
+
+	public void Ordenamientos() {
+
+		if (app.key == '1') {
+			// informaciones.clear();
+			// informaciones.addAll(backup);
 			Collections.sort(informaciones);
 		}
-		
-		if(app.key == '2'){			
-			Collections.sort(informaciones,new compPeso());
-			
+
+		if (app.key == '2') {
+			// informaciones.clear();
+			// informaciones.addAll(backup);
+			Collections.sort(informaciones, new compPeso());
+
 		}
-		
-		if(app.key == '3'){
-//			Collections.sort(peso);
+
+		if (app.key == '3') {
+			// Collections.sort(peso);
 			informaciones.clear();
 			informaciones.addAll(peso);
 			Collections.sort(informaciones, new compPeso());
 			Collections.reverse(informaciones);
 		}
-		if(app.key == '4'){
-			
-			
+		if (app.key == '4') {
+			informaciones.clear();
+			informaciones.addAll(color);
+
 		}
 	}
 

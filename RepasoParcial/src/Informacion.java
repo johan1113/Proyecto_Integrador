@@ -4,7 +4,7 @@ public class Informacion implements Comparable<Informacion> {
 
 	private PApplet app;
 	private String nombre, apellido;
-	private float cedula, edad, peso, r, g, b;
+	private float cedula, edad, peso, r, g, b, suma;
 	private int y;
 
 	public Informacion(PApplet app, String nombre, String apellido, float cedula, float edad, float peso, float r,
@@ -19,6 +19,7 @@ public class Informacion implements Comparable<Informacion> {
 		this.r = r;
 		this.g = g;
 		this.b = b;
+		suma = r + g + b;
 	}
 
 	public void pintar(int y) {
@@ -32,6 +33,25 @@ public class Informacion implements Comparable<Informacion> {
 	public int compareTo(Informacion f) {
 
 		return getNombre().compareTo(f.getNombre());
+	}
+
+	public int hashCode() {
+
+		return (int) suma;
+	}
+
+	public boolean equals(Object obj) {
+
+		Informacion i = (Informacion) obj;
+		return suma == i.getSuma();
+	}
+
+	public float getSuma() {
+		return suma;
+	}
+
+	public void setSuma(float suma) {
+		this.suma = suma;
 	}
 
 	public String getNombre() {
