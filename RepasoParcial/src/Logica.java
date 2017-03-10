@@ -77,20 +77,15 @@ public class Logica {
 	public void Ordenamientos() {
 
 		if (app.key == '1') {
-			// informaciones.clear();
-			// informaciones.addAll(backup);
 			Collections.sort(informaciones);
 		}
 
 		if (app.key == '2') {
-			// informaciones.clear();
-			// informaciones.addAll(backup);
 			Collections.sort(informaciones, new compPeso());
 
 		}
 
 		if (app.key == '3') {
-			// Collections.sort(peso);
 			informaciones.clear();
 			informaciones.addAll(peso);
 			Collections.sort(informaciones, new compPeso());

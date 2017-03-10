@@ -70,60 +70,12 @@ public class Informacion implements Comparable<Informacion> {
 		this.apellido = apellido;
 	}
 
-	public float getCedula() {
-		return cedula;
-	}
-
-	public void setCedula(float cedula) {
-		this.cedula = cedula;
-	}
-
-	public float getEdad() {
-		return edad;
-	}
-
-	public void setEdad(float edad) {
-		this.edad = edad;
-	}
-
 	public float getPeso() {
 		return peso;
 	}
 
 	public void setPeso(float peso) {
 		this.peso = peso;
-	}
-
-	public float getR() {
-		return r;
-	}
-
-	public void setR(float r) {
-		this.r = r;
-	}
-
-	public float getG() {
-		return g;
-	}
-
-	public void setG(float g) {
-		this.g = g;
-	}
-
-	public float getB() {
-		return b;
-	}
-
-	public void setB(float b) {
-		this.b = b;
-	}
-
-	public int getY() {
-		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
 	}
 
 }
